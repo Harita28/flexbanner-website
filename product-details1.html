@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Black back Flex Banner</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="product-details1.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Product Details</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">About us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="my-orders.html">My Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="product-detail">
+        <h2>Black back Flex Banner</h2>
+<p>Base Price: Rs 13 per square foot</p>
+<p>Size: Customizable</p>
+<p>Used for outdoor branding as sunrays will not cross the flex.</p>
+<label for="size">Select Size (in sq. ft):</label>
+<input type="number" id="size" min="1" value="1" oninput="calculatePrice()">
+<label for="upload-file">Upload Design File (PNG, JPEG, PDF):</label>
+<input type="file" id="upload-file" accept=".png, .jpeg, .jpg, .pdf">
+<p>Total Price: Rs <span id="calculated-price">13</span></p>
+<button onclick="addToCart(1)">Add to Cart</button>
+    </section>
+    <footer>
+        <p>&copy; 2025 Flex Banner Printing Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>

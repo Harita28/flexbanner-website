@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Flex Banner Printing Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartContainer = document.getElementById("cart-container");
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+                document.getElementById("place-order").style.display = "none"; // Hide the place order button
+                return;
+            }
+
+            cart.forEach((product, index) => {
+                const productRow = document.createElement("div");
+                productRow.classList.add("cart-item");
+
+                productRow.innerHTML = `
+                    <p><strong>Product:</strong> ${product.name}</p>
+                    <p><strong>Size:</strong> ${product.size} sq. ft</p>
+                    <p><strong>Price:</strong> Rs ${product.price}</p>
+                    <p><strong>File:</strong> ${product.fileName}</p>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+
+                cartContainer.appendChild(productRow);
+            });
+        }
+
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1); // Remove item at the specified index
+            localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart
+            location.reload(); // Reload the page to reflect changes
+        }
+
+        function placeOrder() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            
+            if (cart.length === 0) {
+                alert("Your cart is empty. Add items before placing an order.");
+                return;
+            }
+
+            // Simulate order placement
+            localStorage.removeItem("cart"); // Clear the cart
+            alert("Your order has been placed successfully!");
+
+            // Redirect to order confirmation or reload the cart
+            window.location.href = "my-orders.html"; // Redirect to orders page (optional)
+        }
+    </script>
+</head>
+<body onload="loadCart()">
+    <header>
+        <h1>Your Cart</h1><br>
+        <nav>
+            <ul>
+                <li><a href="index.html">About us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="my-orders.html">My Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="cart-container">
+        <!-- Cart items will be dynamically loaded here -->
+    </section>
+
+    <!-- Place Order Button -->
+    <div id="order-actions">
+        <button id="place-order" onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Flex Banner Printing Shop. All rights reserved.</p>
+    </footer>
+</body>
+</html>
